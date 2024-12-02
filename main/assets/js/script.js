@@ -29,7 +29,7 @@ function getEmoji(data) {
     else if (icon === '50d') { iconText = '🌫' }
     else if (icon === '50n') { iconText = '🌫' }
     else if (icon === '01d') { iconText = '☀️' }
-    else if (icon === '01n') { iconText = '🌑' }
+    else if (icon === '01n') { iconText = '☀️' }
     else if (icon === '02d') { iconText = '⛅️' }
     else if (icon === '02n') { iconText = '⛅️' }
     else if (icon === '03d') { iconText = '☁️' }
@@ -41,6 +41,9 @@ function getEmoji(data) {
 }
 
 function currentWeather(data) {
+    const city = data.city.name
+    const weather = data.list[0]
+
     const resultCard = document.createElement('div')
     resultCard.classList.add('card')
 
@@ -48,14 +51,16 @@ function currentWeather(data) {
     resultBody.classList.add('card-body')
     resultCard.append(resultBody)
 
-    const bodyContentEl = document.createElement('p');
-    const trimmedDate = data.dt_txt.substring(0, 10)
-    bodyContentEl.innerHTML = `Date: ${trimmedDate}<br/>`;
-    bodyContentEl.innerHTML += `Temp: ${KtoF(data.main.temp)}°<br/>`;
-    bodyContentEl.innerHTML += `Wind: ${data.wind.speed} MPH<br/>`;
-    bodyContentEl.innerHTML += `Humidity: ${data.main.humidity}%<br/>`
+    const headerEl = document.createElement('h3');
+    const trimmedDate = weather.dt_txt.substring(0, 10)
+    headerEl.textContent = `${city} ${trimmedDate} ${getEmoji(weather)}`
 
-    resultBody.append(bodyContentEl);
+    const bodyContentEl = document.createElement('p');
+    bodyContentEl.innerHTML += `Temp: ${KtoF(weather.main.temp)}°<br/>`;
+    bodyContentEl.innerHTML += `Wind: ${weather.wind.speed} MPH<br/>`;
+    bodyContentEl.innerHTML += `Humidity: ${weather.main.humidity}%<br/>`
+
+    resultBody.append(headerEl, bodyContentEl);
     currentWeatherEl.append(resultCard);
 }
 
@@ -114,20 +119,18 @@ function handleSearchFormSubmit(event) {
                 })
                 .then(function (data) {
                     const city = data.city.name
-                    const list = data.list
 
                     resultsEl.textContent = ''
                     currentWeatherEl.textContent = ''
 
-                    cityName.textContent = `${city} ${list[0].dt_txt.substring(0, 10)} ${getEmoji(list[0])}`
                     if (!searches.includes(city)) {
                         searches.push(city)
                     }
-
                     storeSearches(searches)
-                    currentWeather(list[0])
+
+                    currentWeather(data)
                     for (let i = 7; i < 41; i += 8) {
-                        printResults(list[i])
+                        printResults(data.list[i])
                     }
                 })
         })
