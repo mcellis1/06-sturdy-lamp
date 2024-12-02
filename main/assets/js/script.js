@@ -9,6 +9,51 @@ function KtoF(temp) {
     return Math.round((temp - 273.15) * 1.8 + 32)
 }
 
+function getEmoji(data) {
+    const icon = data.weather[0].icon
+    let iconText
+    console.log(icon)
+    if (icon === '11d') {
+        iconText = '⚡️'
+    } else if (icon === '11n') {
+        iconText = '⚡️'
+    } else if (icon === '09d') {
+        iconText = '🌧'
+    } else if (icon === '09n') {
+        iconText = '🌧'
+    } else if (icon === '10d') {
+        iconText = '🌧'
+    } else if (icon === '10n') {
+        iconText = '🌧'
+    } else if (icon === '13d') {
+        iconText = '❄️'
+    } else if (icon === '13n') {
+        iconText = '❄️'
+    } else if (icon === '50d') {
+        iconText = '🌫'
+    } else if (icon === '50n') {
+        iconText = '🌫'
+    } else if (icon === '01d') {
+        iconText = '☀️'
+    } else if (icon === '01n') {
+        iconText = '🌑'
+    } else if (icon === '02d') {
+        iconText = '⛅️'
+    } else if (icon === '02n') {
+        iconText = '⛅️'
+    } else if (icon === '03d') {
+        iconText = '☁️'
+    } else if (icon === '03n') {
+        iconText = '☁️'
+    } else if (icon === '04d') {
+        iconText = '☁️'
+    } else if (icon === '04n') {
+        iconText = '☁️'
+    } else { return }
+    console.log(iconText)
+    return iconText
+}
+
 function currentWeather(data) {
     const resultCard = document.createElement('div')
     resultCard.classList.add('card')
@@ -41,7 +86,8 @@ function printResults(data) {
 
     const bodyContentEl = document.createElement('p');
     const trimmedDate = data.dt_txt.substring(0, 10)
-    bodyContentEl.innerHTML = `Date: ${trimmedDate}<br/>`;
+    bodyContentEl.innerHTML = `${getEmoji(data)}<br/>`;
+    bodyContentEl.innerHTML += `Date: ${trimmedDate}<br/>`;
     bodyContentEl.innerHTML += `Temp: ${KtoF(data.main.temp)}°<br/>`;
     bodyContentEl.innerHTML += `Wind: ${data.wind.speed} MPH<br/>`;
     bodyContentEl.innerHTML += `Humidity: ${data.main.humidity}%<br/>`
@@ -84,7 +130,7 @@ function handleSearchFormSubmit(event) {
                 })
                 .then(function (data) {
                     console.log(data)
-                    cityName.textContent = `${data.city.name} ${data.list[0].dt_txt.substring(0, 10)}`
+                    cityName.textContent = `${data.city.name} ${data.list[0].dt_txt.substring(0, 10)} ${getEmoji(data.list[0])}`
                     resultsEl.textContent = '';
                     currentWeatherEl.textContent = '';
                     currentWeather(data.list[0])
