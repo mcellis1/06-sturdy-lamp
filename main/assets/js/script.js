@@ -11,6 +11,10 @@ function KtoF(temp) {
     return Math.round((temp - 273.15) * 1.8 + 32)
 }
 
+function storeSearches(searches) {
+    localStorage.setItem('searched', JSON.stringify(searches))
+}
+
 function getEmoji(data) {
     const icon = data.weather[0].icon
     let iconText
@@ -36,11 +40,6 @@ function getEmoji(data) {
     return iconText
 }
 
-function storeSearches(searches) {
-    console.log(searches)
-    localStorage.setItem('searched', JSON.stringify(searches))
-}
-
 function currentWeather(data) {
     const resultCard = document.createElement('div')
     resultCard.classList.add('card')
@@ -61,7 +60,6 @@ function currentWeather(data) {
 }
 
 function printResults(data) {
-    console.log(data)
     fiveDayHeader.textContent = '5-Day Forecast'
 
     const resultCard = document.createElement('div')
@@ -71,16 +69,16 @@ function printResults(data) {
     resultBody.classList.add('card-body')
     resultCard.append(resultBody)
 
-    const bodyContentEl = document.createElement('p');
+    const bodyContentEl = document.createElement('p')
     const trimmedDate = data.dt_txt.substring(0, 10)
-    bodyContentEl.innerHTML = `${getEmoji(data)}<br/>`;
-    bodyContentEl.innerHTML += `Date: ${trimmedDate}<br/>`;
-    bodyContentEl.innerHTML += `Temp: ${KtoF(data.main.temp)}°<br/>`;
-    bodyContentEl.innerHTML += `Wind: ${data.wind.speed} MPH<br/>`;
+    bodyContentEl.innerHTML = `${getEmoji(data)}<br/>`
+    bodyContentEl.innerHTML += `Date: ${trimmedDate}<br/>`
+    bodyContentEl.innerHTML += `Temp: ${KtoF(data.main.temp)}°<br/>`
+    bodyContentEl.innerHTML += `Wind: ${data.wind.speed} MPH<br/>`
     bodyContentEl.innerHTML += `Humidity: ${data.main.humidity}%<br/>`
 
-    resultBody.append(bodyContentEl);
-    resultsEl.append(resultCard);
+    resultBody.append(bodyContentEl)
+    resultsEl.append(resultCard)
 }
 
 function handleSearchFormSubmit(event) {
@@ -112,21 +110,24 @@ function handleSearchFormSubmit(event) {
                         throw response.json()
                     }
                     const json = response.json()
-                    console.log(json)
                     return json
                 })
                 .then(function (data) {
-                    console.log(data)
-                    resultsEl.textContent = '';
-                    currentWeatherEl.textContent = '';
-                    cityName.textContent = `${data.city.name} ${data.list[0].dt_txt.substring(0, 10)} ${getEmoji(data.list[0])}`
-                    if (!searches.includes(data.city.name)) {
-                        searches.push(data.city.name)
+                    const city = data.city.name
+                    const list = data.list
+
+                    resultsEl.textContent = ''
+                    currentWeatherEl.textContent = ''
+
+                    cityName.textContent = `${city} ${list[0].dt_txt.substring(0, 10)} ${getEmoji(list[0])}`
+                    if (!searches.includes(city)) {
+                        searches.push(city)
                     }
+
                     storeSearches(searches)
-                    currentWeather(data.list[0])
+                    currentWeather(list[0])
                     for (let i = 7; i < 41; i += 8) {
-                        printResults(data.list[i]);
+                        printResults(list[i])
                     }
                 })
         })
