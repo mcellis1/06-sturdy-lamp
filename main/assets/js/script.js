@@ -5,6 +5,8 @@ const resultsEl = document.querySelector('#results-el')
 const cityName = document.querySelector('#city-name')
 const fiveDayHeader = document.querySelector('#five-day-forecast')
 
+let searches = []
+
 function KtoF(temp) {
     return Math.round((temp - 273.15) * 1.8 + 32)
 }
@@ -32,6 +34,11 @@ function getEmoji(data) {
     else if (icon === '04n') { iconText = '☁️' }
     else { return }
     return iconText
+}
+
+function storeSearches(searches) {
+    console.log(searches)
+    localStorage.setItem('searched', JSON.stringify(searches))
 }
 
 function currentWeather(data) {
@@ -113,6 +120,10 @@ function handleSearchFormSubmit(event) {
                     resultsEl.textContent = '';
                     currentWeatherEl.textContent = '';
                     cityName.textContent = `${data.city.name} ${data.list[0].dt_txt.substring(0, 10)} ${getEmoji(data.list[0])}`
+                    if (!searches.includes(data.city.name)) {
+                        searches.push(data.city.name)
+                    }
+                    storeSearches(searches)
                     currentWeather(data.list[0])
                     for (let i = 7; i < 41; i += 8) {
                         printResults(data.list[i]);
