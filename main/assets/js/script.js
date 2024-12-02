@@ -12,45 +12,25 @@ function KtoF(temp) {
 function getEmoji(data) {
     const icon = data.weather[0].icon
     let iconText
-    console.log(icon)
-    if (icon === '11d') {
-        iconText = '⚡️'
-    } else if (icon === '11n') {
-        iconText = '⚡️'
-    } else if (icon === '09d') {
-        iconText = '🌧'
-    } else if (icon === '09n') {
-        iconText = '🌧'
-    } else if (icon === '10d') {
-        iconText = '🌧'
-    } else if (icon === '10n') {
-        iconText = '🌧'
-    } else if (icon === '13d') {
-        iconText = '❄️'
-    } else if (icon === '13n') {
-        iconText = '❄️'
-    } else if (icon === '50d') {
-        iconText = '🌫'
-    } else if (icon === '50n') {
-        iconText = '🌫'
-    } else if (icon === '01d') {
-        iconText = '☀️'
-    } else if (icon === '01n') {
-        iconText = '🌑'
-    } else if (icon === '02d') {
-        iconText = '⛅️'
-    } else if (icon === '02n') {
-        iconText = '⛅️'
-    } else if (icon === '03d') {
-        iconText = '☁️'
-    } else if (icon === '03n') {
-        iconText = '☁️'
-    } else if (icon === '04d') {
-        iconText = '☁️'
-    } else if (icon === '04n') {
-        iconText = '☁️'
-    } else { return }
-    console.log(iconText)
+    if (icon === '11d') { iconText = '⚡️' }
+    else if (icon === '11n') { iconText = '⚡️' }
+    else if (icon === '09d') { iconText = '🌧' }
+    else if (icon === '09n') { iconText = '🌧' }
+    else if (icon === '10d') { iconText = '🌧' }
+    else if (icon === '10n') { iconText = '🌧' }
+    else if (icon === '13d') { iconText = '❄️' }
+    else if (icon === '13n') { iconText = '❄️' }
+    else if (icon === '50d') { iconText = '🌫' }
+    else if (icon === '50n') { iconText = '🌫' }
+    else if (icon === '01d') { iconText = '☀️' }
+    else if (icon === '01n') { iconText = '🌑' }
+    else if (icon === '02d') { iconText = '⛅️' }
+    else if (icon === '02n') { iconText = '⛅️' }
+    else if (icon === '03d') { iconText = '☁️' }
+    else if (icon === '03n') { iconText = '☁️' }
+    else if (icon === '04d') { iconText = '☁️' }
+    else if (icon === '04n') { iconText = '☁️' }
+    else { return }
     return iconText
 }
 
@@ -130,9 +110,9 @@ function handleSearchFormSubmit(event) {
                 })
                 .then(function (data) {
                     console.log(data)
-                    cityName.textContent = `${data.city.name} ${data.list[0].dt_txt.substring(0, 10)} ${getEmoji(data.list[0])}`
                     resultsEl.textContent = '';
                     currentWeatherEl.textContent = '';
+                    cityName.textContent = `${data.city.name} ${data.list[0].dt_txt.substring(0, 10)} ${getEmoji(data.list[0])}`
                     currentWeather(data.list[0])
                     for (let i = 7; i < 41; i += 8) {
                         printResults(data.list[i]);
