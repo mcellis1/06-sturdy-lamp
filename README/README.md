@@ -16,17 +16,17 @@ This website allows you to search the current weather of any city, using only th
 
 In order to see the weather for the city you want, you must first type in the name of the city into the search bar, and then click search.
 
-![screenshot of a searchbar on a website](./main/assets/images/search.png)
+![screenshot of a searchbar on a website](../assets/images/search.png)
 
 Then you will be presented witht he current weather in the city, and the weather for the next five days.
 
-![results of a 5 day forecast for the city of nashville](./main/assets/images/results.png)
+![results of a 5 day forecast for the city of nashville](../assets/images/results.png)
 
 ## Usage
 
 Once you submit a search for a city, that city wil be saved to the searches on the left side of the screen so that you can easily navigate back to cities that you previoussly searched for.
 
-![multiple city names underneath the search bar](./main/assets/images/saves.png)
+![multiple city names underneath the search bar](../assets/images/saves.png)
 
 ## Contributing
 
