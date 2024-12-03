@@ -84,7 +84,7 @@ function printResults(data) {
 }
 
 function apiFetch(searchInput) {
-    const citySearch = `http://api.openweathermap.org/geo/1.0/direct?q=${searchInput}&limit=1&appid=${APIKey}`
+    const citySearch = `https://api.openweathermap.org/geo/1.0/direct?q=${searchInput}&limit=1&appid=${APIKey}`
     
     fetch(citySearch)
     .then(function (response) {
