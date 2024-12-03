@@ -1,0 +1,116 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(248, 244, 238);
+    background-color: rgb(38, 41, 49);
+    margin: 0;
+}
+
+h1 {
+    background-image: linear-gradient(to right, rgb(5, 20, 107) , rgb(73, 17, 119));
+    padding: 20px;
+    font-size: 42px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.sidebar {
+    background-color: rgb(10, 82, 82); 
+    padding: 20px;
+    float: left;
+    flex: 1 1 20%;
+}
+
+.sidebar section {
+    background-color: rgb(10, 82, 82); 
+}
+
+.sidebar h2 {
+    background-color: rgb(10, 82, 82); 
+    margin: 12px;
+    font-size: 32px;
+}
+
+.sidebar input {
+    padding: 6px;
+    margin: 4px;
+    font-size: 20px;
+    border-radius: 25px;
+    min-width: 240px;
+    background-color: rgb(211, 231, 248);
+    color: rgb(48, 18, 61);
+}
+
+.sidebar input:hover {
+    cursor: pointer;
+}
+
+.result {
+    border: 8px;
+    border-style: solid;
+    border-color: rgb(41, 60, 167);
+    margin: 18px;
+    padding: 36px;
+    flex: 1 1 30%;
+}
+
+.result h3 {
+    font-size: 48px;
+}
+
+.result p {
+    font-size: 24px;
+}
+
+.card {
+    border: 4px;
+    border-style: solid;
+    border-color: rgb(38, 150, 98);
+    margin: 14px;
+    padding: 20px;
+    flex: 1 1 10%;
+    display: inline-flex;
+}
+
+.card span {
+    font-size: 48px;
+    text-align: center;
+}
+
+.card p {
+    font-size: 18px;
+    padding: 10px
+}
+
+#search-form {
+    background-color: rgb(10, 82, 82); 
+}
+
+#searches {
+    padding: 1%;
+    background-color: rgb(10, 82, 82); 
+}
+
+#searches div {
+    background-color: rgb(63, 27, 104);
+    margin: 12px 0 12px 0;
+    padding: 6px;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 25px;
+}
+
+#searches div:hover {
+    box-shadow: 4px 4px 4px 4px rgb(48, 18, 61);
+    cursor: pointer;
+}
+
+#five-day-forecast {
+    font-size: 36px;
+    color: rgb(140, 53, 223);
+    padding: 20px;
+}

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
     <link href="" />
+    <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 
@@ -14,32 +15,33 @@
         <h1>Weather Dashboard</h1>
     </nav>
 
-    <article>
-        <section>
-            <h2>Search for a City:</h2>
-            <form id="search-form">
-                <label for="city-search"></label>
-                <input type="text" id="city-search" name="city-search" placeholder="city name"><br>
-                <input type="submit" value="Search">
-            </form>
+    <article class="container">
+        <section class="sidebar">
+            <section>
+                <h2>Search for a City:</h2>
+                <form id="search-form">
+                    <label for="city-search"></label>
+                    <input type="text" id="city-search" name="city-search" placeholder="city name"><br>
+                    <input id="button" type="submit" value="Search">
+                </form>
+            </section>
+
+            <section>
+                <div id="searches"></div>
+            </section>
         </section>
 
         <section>
-            <div id="searches"></div>
+            <section>
+                <div id="current-weather"></div>
+            </section>
+
+            <section>
+                <h3 id="five-day-forecast"></h3>
+                <div id="results-el"></div>
+            </section>
         </section>
     </article>
-
-    <article>
-        <section>
-            <div id="current-weather"></div>
-        </section>
-        
-        <section>
-            <h3 id="five-day-forecast"></h3>
-            <div id="results-el"></div>
-        </section>
-    </article>
-
     <script src="./assets/js/script.js"></script>
 </body>
 

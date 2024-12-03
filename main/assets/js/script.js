@@ -42,10 +42,10 @@ function currentWeather(data) {
     const weather = data.list[0]
     
     const resultCard = document.createElement('div')
-    resultCard.classList.add('card')
+    resultCard.classList.add('result')
     
     const resultBody = document.createElement('div')
-    resultBody.classList.add('card-body')
+    resultBody.classList.add('result-body')
     resultCard.append(resultBody)
     
     const headerEl = document.createElement('h3');
@@ -73,7 +73,7 @@ function printResults(data) {
     
     const bodyContentEl = document.createElement('p')
     const trimmedDate = data.dt_txt.substring(0, 10)
-    bodyContentEl.innerHTML = `${getEmoji(data)}<br/>`
+    bodyContentEl.innerHTML = `<span>${getEmoji(data)}<span/><br/>`
     bodyContentEl.innerHTML += `Date: ${trimmedDate}<br/>`
     bodyContentEl.innerHTML += `Temp: ${KtoF(data.main.temp)}°<br/>`
     bodyContentEl.innerHTML += `Wind: ${data.wind.speed} MPH<br/>`
